@@ -9,8 +9,9 @@ import threading
 input_port = mido.open_input('Roland Digital Piano')
 output_port = mido.open_output('Roland Digital Piano')
 
-# 2) set the delay time (in seconds) between repeats
+# 2) set the delay time (in seconds) and number of repeats
 DELAY_TIME = 0.3 
+NUMBER_OF_REPEATS = 1
 
 print("MIDI delay script running. Press Ctrl+C to stop.")
 
@@ -38,7 +39,7 @@ try:
             # send the original message immediately
             output_port.send(msg)
             # schedule two additional repeats without blocking
-            schedule_repeat(msg, DELAY_TIME, 1)
+            schedule_repeat(msg, DELAY_TIME, NUMBER_OF_REPEATS)
 
 except KeyboardInterrupt:
     print("\nExiting MIDI delay script...")
